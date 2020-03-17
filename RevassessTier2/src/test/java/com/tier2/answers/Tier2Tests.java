@@ -1,22 +1,22 @@
 package com.tier2.answers;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import com.tier2.config.TestConfiguration;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class AnswerOneTest {
+
+public class Tier2Tests {
     private static File answer1, setupFile;
     private static String answer1Contents, setupFileContents;
+    private static int points;
 
     @BeforeClass
     public static void setup() {
@@ -39,12 +39,38 @@ public class AnswerOneTest {
 
     @Test
     public void test1(){
-        Session sess = TestConfiguration.getSessionFactory().openSession();
-        Transaction tx = sess.beginTransaction();
-        sess.createNativeQuery(setupFileContents).executeUpdate();
+        // Session sess = TestConfiguration.getSessionFactory().openSession();
+        // Transaction tx = sess.beginTransaction();
+        // sess.createNativeQuery(setupFileContents).executeUpdate();
+        assertTrue(true);
         
-        
-        tx.rollback();
+        // tx.rollback();
+        points+=10;
+    }
+
+    @Test
+    public void test2(){
+        assertTrue(false);
+        points+=20;
+    }
+    
+    @Test
+    public void test3(){
+        assertTrue(false);
+        points+=30;
+    }
+
+    @Test
+    public void test4(){
+        assertTrue(false);
+        System.out.println("made it to test 4");
+        assertTrue(true);
+        points+=40;
+    }
+
+    @Test
+    public void MoveOn(){
+        assertTrue(points>=60);
     }
 
 }
