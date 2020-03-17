@@ -1,4 +1,4 @@
-package com.RevassessTier1;
+package com.tier1;
 
 public class NumberSumLength {
 
