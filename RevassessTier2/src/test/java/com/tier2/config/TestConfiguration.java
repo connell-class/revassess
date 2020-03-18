@@ -13,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 public class TestConfiguration {
     private static SessionFactory sesfact;
     static String engine;
+    
 
     private static SessionFactory buildFactory() throws IOException {
         Properties props = new Properties();
