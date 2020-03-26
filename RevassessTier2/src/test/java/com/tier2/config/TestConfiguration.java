@@ -1,7 +1,9 @@
 package com.tier2.config;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Optional;
@@ -53,5 +55,21 @@ public class TestConfiguration {
     }
     public static String getEngine(){
         return engine;
+    }
+
+    public static String getFileContents(String filename){
+        File answer = new File("src/sql/"+filename+".sql");
+        String contents="";
+        try {
+            String line;
+            BufferedReader br = new BufferedReader(new FileReader(answer));
+            while ((line = br.readLine()) != null) {
+                contents += line;
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contents;
     }
 }
