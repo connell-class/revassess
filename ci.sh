@@ -19,6 +19,7 @@ test
 if [ $failedTier > 0 ]
 then
     echo the failed tier was: tier $failedTier
+    exit 1
 else
     echo revassess has been passed
 fi
