@@ -15,6 +15,7 @@ test(){
     done
     git checkout master
 }
+test
 if [ $failedTier > 0 ]
 then
     echo the failed tier was: tier @failedTier
