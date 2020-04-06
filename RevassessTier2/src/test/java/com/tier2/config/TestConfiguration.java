@@ -6,8 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Optional;
 import java.util.Properties;
+
+import com.tier2.model.UserProblem4;
+import com.tier2.model.UserStudySet;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,23 +17,23 @@ import org.hibernate.cfg.Configuration;
 public class TestConfiguration {
     private static SessionFactory sesfact;
     static String engine;
-    
 
     private static SessionFactory buildFactory() throws IOException {
         Properties props = new Properties();
         props.load(new FileInputStream(new File("src/sql/setup.properties")));
-        return new Configuration()
-            .setProperty("connection.username", props.getProperty("database.username") )
-            .setProperty("connection.password", props.getProperty("database.password"))
-            .setProperty("connection.url", props.getProperty("database.url"))
-            .setProperty("connection.driver_class", findDriver(props))
-            .setProperty("connection.pool_size", "1")
-            .setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_SERIALIZABLE))
+        return new Configuration().addProperties(props)
+                .setProperty("hibernate.connection.driver_class", findDriver(props))
+                .setProperty("hibernate.connection.pool_size", "1")
+                .setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_SERIALIZABLE))
+                .setProperty("hibernate.hbm2ddl.auto", "none").setProperty("hibernate.show_sql", "true")
+                .addAnnotatedClass(com.tier2.model.User.class)
+                .addAnnotatedClass(UserStudySet.class)
+                .addAnnotatedClass(UserProblem4.class)
             .buildSessionFactory();
     }
 
     public static SessionFactory getSessionFactory() {
-        if (!Optional.of(sesfact).isPresent()) {
+        if (sesfact == null) {
             try {
                 sesfact = buildFactory();
             } catch (IOException e) {
@@ -57,19 +59,16 @@ public class TestConfiguration {
         return engine;
     }
 
-    public static String getFileContents(String filename){
+    public static String getFileContents(String filename) throws IOException {
         File answer = new File("src/sql/"+filename+".sql");
         String contents="";
-        try {
+        
             String line;
             BufferedReader br = new BufferedReader(new FileReader(answer));
             while ((line = br.readLine()) != null) {
                 contents += line;
             }
             br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return contents;
     }
 }

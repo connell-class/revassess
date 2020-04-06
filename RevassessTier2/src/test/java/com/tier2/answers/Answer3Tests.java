@@ -1,30 +1,34 @@
 package com.tier2.answers;
 
-import static org.junit.Assert.assertTrue;
+import static com.tier2.config.TestConfiguration.getFileContents;
+import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
+import com.tier2.config.TestConfiguration;
+import com.tier2.model.UserStudySet;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.Before;
 import org.junit.Test;
+/**
+ * prompt:
+ * Write a query that will 
+ * find all user and study 
+ * set info related to the 
+ * user with an id of 5
 
+ */
 public class Answer3Tests {
 
-    private static File answer3;
     private static String answer3Contents;
 
     @Before
     public void setup() {
-        answer3 = new File("src/sql/answer3.sql");
         try {
-            String line;
-            BufferedReader br = new BufferedReader(new FileReader(answer3));
-            while ((line = br.readLine()) != null) {
-                answer3Contents += line;
-            }
-            br.close();
+            answer3Contents = getFileContents("answer3");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,11 +36,15 @@ public class Answer3Tests {
 
     @Test
     public void test3() {
-        assertTrue(false);
-        // Session sess = TestConfiguration.getSessionFactory().openSession();
-        // Transaction tx = sess.beginTransaction();
-        // tx.rollback();
+        Session sess = TestConfiguration.getSessionFactory().openSession();
+        Transaction tx = sess.beginTransaction();
+        List<UserStudySet> users = sess.createNativeQuery(answer3Contents, UserStudySet.class).list();
+        assertEquals(3, users.size());
+        tx.rollback();
 
         PointsTests.addPoints(30);
     }
+
+
+    
 }

@@ -1,30 +1,35 @@
 package com.tier2.answers;
 
-import static org.junit.Assert.assertTrue;
+import static com.tier2.config.TestConfiguration.getFileContents;
+import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
+import com.tier2.config.TestConfiguration;
+import com.tier2.model.User;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * prompt:
+ * Write a statement that 
+ * will insert a new user 
+ * into the APP_user table 
+ * with a role of PREMIUM_user
+ * 
+ */
 public class Answer2Tests {
 
-    private static File answer2;
     private static String answer2Contents;
 
     @Before
     public void setup() {
-        answer2 = new File("src/sql/answer2.sql");
         try {
-            String line;
-            BufferedReader br = new BufferedReader(new FileReader(answer2));
-            while ((line = br.readLine()) != null) {
-                answer2Contents += line;
-            }
-            br.close();
+            answer2Contents = getFileContents("answer2");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,10 +37,16 @@ public class Answer2Tests {
 
     @Test
     public void test2() {
-        assertTrue(false);
-        // Session sess = TestConfiguration.getSessionFactory().openSession();
-        // Transaction tx = sess.beginTransaction();
-        // tx.rollback();
+        Session sess = TestConfiguration.getSessionFactory().openSession();
+        Transaction tx = sess.beginTransaction();
+        List<User> after, before;
+        before = sess.createQuery("from User where roleId=4",User.class).list();
+        sess.createNativeQuery(answer2Contents,User.class).executeUpdate();
+        after = sess.createQuery("from User where roleId=4",User.class).list();
+        System.out.println(before);
+        System.out.println(after);
+        assertEquals(after.size(), before.size()+1);
+        tx.rollback();
 
         PointsTests.addPoints(20);
     }

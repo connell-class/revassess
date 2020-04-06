@@ -1,0 +1,1 @@
+INSERT INTO testing.app_user (username, password, first_name, last_name, role_id) VALUES ('bkruppa1', 'revature1', 'Blake1', 'Kruppa1', 4);

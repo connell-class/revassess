@@ -1,30 +1,34 @@
 package com.tier2.answers;
 
-import static org.junit.Assert.assertTrue;
+import static com.tier2.config.TestConfiguration.getFileContents;
+import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
+import com.tier2.config.TestConfiguration;
+import com.tier2.model.UserProblem4;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * prompt:
+ * Write a query that will obtain 
+ * the owner’s username, as well 
+ * as the category name, questions, 
+ * and answers of flashcard contained 
+ * within the study set with and id of 4.
+ */
 public class Answer4Tests {
 
-    private static File answer4;
     private static String answer4Contents;
     
     @Before
     public void setup() {
-        answer4 = new File("src/sql/answer4.sql");
         try {
-            String line;
-            BufferedReader br = new BufferedReader(new FileReader(answer4));
-            while ((line = br.readLine()) != null) {
-                answer4Contents += line;
-            }
-            br.close();
+            answer4Contents = getFileContents("answer4");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,10 +36,11 @@ public class Answer4Tests {
 
     @Test
     public void test4() {
-        assertTrue(false);
-        // Session sess = TestConfiguration.getSessionFactory().openSession();
-        // Transaction tx = sess.beginTransaction();
-        // tx.rollback();
+        Session sess = TestConfiguration.getSessionFactory().openSession();
+        Transaction tx = sess.beginTransaction();
+        List<UserProblem4> users = sess.createNativeQuery(answer4Contents, UserProblem4.class).list();
+        assertEquals(9, users.size());
+        tx.rollback();
 
         PointsTests.addPoints(40);
     }
