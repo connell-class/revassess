@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.Properties;
 
+import com.tier2.model.User;
 import com.tier2.model.UserProblem4;
 import com.tier2.model.UserStudySet;
 
@@ -26,9 +27,9 @@ public class TestConfiguration {
                 .setProperty("hibernate.connection.pool_size", "1")
                 .setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_SERIALIZABLE))
                 .setProperty("hibernate.hbm2ddl.auto", "none").setProperty("hibernate.show_sql", "true")
-                .addAnnotatedClass(com.tier2.model.User.class)
                 .addAnnotatedClass(UserStudySet.class)
                 .addAnnotatedClass(UserProblem4.class)
+                .addAnnotatedClass(User.class)
             .buildSessionFactory();
     }
 
