@@ -18,7 +18,7 @@ test(){
 test
 if [ $failedTier > 0 ]
 then
-    echo the failed tier was: tier @failedTier
+    echo the failed tier was: tier $failedTier
 else
     echo revassess has been passed
 fi
