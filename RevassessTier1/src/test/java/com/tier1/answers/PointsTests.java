@@ -2,6 +2,7 @@ package com.tier1.answers;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class PointsTests {
@@ -19,6 +20,10 @@ public class PointsTests {
     @Test
     public void MoveOn(){
         assertTrue(points >= 0);
-        System.out.println("points: "+points);
     }
+    
+    @After
+    public void printPoints(){
+        System.out.println("points: "+points);
+}
 }
