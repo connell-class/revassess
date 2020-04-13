@@ -19,7 +19,7 @@ public class PointsTests {
 
     @Test
     public void MoveOn(){
-        assertTrue(points >= 0);
+        assertTrue(points >= 60);
     }
     
     @After
