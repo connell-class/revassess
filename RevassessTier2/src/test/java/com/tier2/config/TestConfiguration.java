@@ -27,10 +27,8 @@ public class TestConfiguration {
                 .setProperty("hibernate.connection.pool_size", "1")
                 .setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_SERIALIZABLE))
                 .setProperty("hibernate.hbm2ddl.auto", "none").setProperty("hibernate.show_sql", "true")
-                .addAnnotatedClass(UserStudySet.class)
-                .addAnnotatedClass(UserProblem4.class)
-                .addAnnotatedClass(User.class)
-            .buildSessionFactory();
+                .addAnnotatedClass(UserStudySet.class).addAnnotatedClass(UserProblem4.class)
+                .addAnnotatedClass(User.class).buildSessionFactory();
     }
 
     public static SessionFactory getSessionFactory() {
@@ -44,32 +42,34 @@ public class TestConfiguration {
         return sesfact;
     }
 
-    private static String findDriver(Properties props){
-        engine=props.getProperty("database.engine");
-        switch(engine){
+    private static String findDriver(Properties props) {
+        engine = props.getProperty("database.engine");
+        switch (engine) {
             case "oraclesql":
                 return "oracle.jdbc.OracleDriver";
             case "postgresql":
                 return "org.postgresql.Driver";
             case "mysql":
                 return "com.mysql.jdbc.Driver";
+            default:
+                return "";
         }
-        return "";
     }
-    public static String getEngine(){
+
+    public static String getEngine() {
         return engine;
     }
 
     public static String getFileContents(String filename) throws IOException {
-        File answer = new File("src/sql/"+filename+".sql");
-        String contents="";
-        
-            String line;
-            BufferedReader br = new BufferedReader(new FileReader(answer));
-            while ((line = br.readLine()) != null) {
-                contents += line;
-            }
-            br.close();
+        File answer = new File("src/sql/" + filename + ".sql");
+        String contents = "";
+
+        String line;
+        BufferedReader br = new BufferedReader(new FileReader(answer));
+        while ((line = br.readLine()) != null) {
+            contents += line;
+        }
+        br.close();
         return contents;
     }
 }

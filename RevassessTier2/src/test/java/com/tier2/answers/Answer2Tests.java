@@ -24,7 +24,7 @@ import org.junit.Test;
  */
 public class Answer2Tests {
 
-    private static String answer2Contents;
+    private String answer2Contents;
 
     @Before
     public void setup() {
@@ -43,8 +43,6 @@ public class Answer2Tests {
         before = sess.createQuery("from User where roleId=4",User.class).list();
         sess.createNativeQuery(answer2Contents,User.class).executeUpdate();
         after = sess.createQuery("from User where roleId=4",User.class).list();
-        System.out.println(before);
-        System.out.println(after);
         assertEquals(after.size(), before.size()+1);
         tx.rollback();
 

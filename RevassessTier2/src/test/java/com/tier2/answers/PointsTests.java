@@ -17,5 +17,6 @@ public class PointsTests {
     @Test
     public void MoveOn() {
         assertTrue(points >= 60);
+        System.out.println("points: "+points);
     }
 }

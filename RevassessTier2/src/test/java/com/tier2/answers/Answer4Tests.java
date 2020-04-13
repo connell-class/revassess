@@ -23,7 +23,7 @@ import org.junit.Test;
  */
 public class Answer4Tests {
 
-    private static String answer4Contents;
+    private String answer4Contents;
     
     @Before
     public void setup() {
