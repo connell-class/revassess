@@ -19,5 +19,6 @@ public class PointsTests {
     @Test
     public void MoveOn(){
         assertTrue(points >= 0);
+        System.out.println("points: "+points);
     }
 }
