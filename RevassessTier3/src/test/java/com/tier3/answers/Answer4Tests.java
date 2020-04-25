@@ -3,7 +3,12 @@ package com.tier3.answers;
 import static com.tier3.answers.PointsTests.addPoints;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -34,13 +39,20 @@ public class Answer4Tests {
 
     @Test
     public void test4() {
-        Session sess = TestConfig.getInstance().openSession();
-        Transaction tx = sess.beginTransaction();
-        em = Persistence.createEntityManagerFactory("com.rev.config.Sample").createEntityManager();
-        StoredProcedureQuery store = em.createNamedStoredProcedureQuery("revassessProc").setParameter(1, 1);
-        Boolean os = store.execute();
-        assertTrue(os.booleanValue());
-        tx.rollback();
-        addPoints(40);
+      try(Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD){
+
+        String sql = "{ ? = call ?(?,?)";
+        CallableStatement cs = conn.prepareCall(sql);
+        cs.setString(2, ConnectionConfig.TIER_3_PROCEDURE_NAME);
+        cs.registerOutParameter(1, Types.REF_CURSOR);
+        cs.setInt(3, 1);
+        cs.registerOutParameter(3, Types.REF_CURSOR);
+        ResultSet rs = cs.executeQuery();
+        while(rs.next()){
+          System.out.println(rs.getInt(1));
+        }
+      } catch(SQLException e){
+          e.printStackTrace();
+      }
     }
 }

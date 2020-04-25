@@ -19,7 +19,6 @@ public class TestConfig{
         .setProperty("hibernate.connection.isolation", String.valueOf(Connection.TRANSACTION_SERIALIZABLE))
         .setProperty("hibernate.hbm2ddl.auto", "none")
         .setProperty("hibernate.show_sql", "true")
-        .addAnnotatedClass(Sample.class)
         .buildSessionFactory();   
     }
 

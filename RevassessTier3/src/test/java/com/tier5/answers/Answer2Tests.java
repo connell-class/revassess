@@ -1,28 +1,44 @@
 package com.tier5.answers;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * prompt: Successfully consume the data at the provided endpoint (rendering
+ * prompt: 
+ * Successfully consume the data 
+ * at the provided endpoint (rendering
  * data to screen not required)
  */
 public class Answer2Tests {
 
-    @Test
-    public void testAjax() {
+    private WebDriver wd;
+
+    @Before
+    public void setup(){
         System.setProperty("webdriver.gecko.driver", "src/assets/geckodriver.exe");
-        WebDriver wd = new FirefoxDriver();
+        wd = new FirefoxDriver();
         File html = Paths.get("src/main/webapp/html/index.html").toFile();
         wd.navigate().to("file://" + html.getAbsolutePath());
-        System.out.println((new WebDriverWait(wd, 10)).until(ExpectedConditions.jsReturnsValue("callFlashcardApi()")));
-        // (JavascriptExecutor) wd).executeScript("getResp()"));
-        wd.close();
+        
     }
+    @Test
+    public void testAjax() {
+        (new WebDriverWait(wd, 10)).until(ExpectedConditions.jsReturnsValue("return JSON.stringify(callFlashcardApi())"));
+        String s = (String) (new WebDriverWait(wd, 10)).until(ExpectedConditions.jsReturnsValue("return JSON.stringify(getResp())"));
+        wd.navigate().to("http://ec2-3-19-123-54.us-east-2.compute.amazonaws.com:9999/flashcard");
+        String json = wd.findElement(By.tagName("body")).getText();
+        assertTrue(json.equals(s.toString()));
+        wd.close();
+    } 
 }
