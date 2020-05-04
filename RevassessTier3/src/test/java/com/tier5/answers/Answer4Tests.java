@@ -15,11 +15,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junit.framework.AssertionFailedError;
+
+import static com.tier5.answers.PointsTests.addPoints;
 
 /**
  * prompt:
@@ -63,17 +62,21 @@ public class Answer4Tests {
         jsonMap.put("cardCat", jsonCat);
     }
 
-    /**
-     * TODO: there is no way this test actually works
-     */
     @Test
-    public void testCarousel(){
-
+    public void testCarousel() throws InterruptedException {
+        assertTrue(checkElements());
+        for(int i = 0; i<2; i++){
+            next();
+            // new WebDriverWait(wd, 3).until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//*[@class='carousel-item active']"))));
+            Thread.sleep(3000);
+            assertTrue(checkElements());
+        }
+        addPoints(40);
         
     }
 
     private Map<String, String> refreshElements(){
-        WebElement we = wd.findElement(By.xpath("//*[@class='carousel-item-active']"));
+        WebElement we = wd.findElement(By.xpath("//*[@class='carousel-item active']"));
         List<WebElement> list = we.findElements(By.xpath("./*[@id='cardId']|./*[@id='cardQstn']|./*[@id='cardAns']|./*[@id='cardCat']"));
         Map<String, String> elements = new HashMap<>();
         list.stream().forEach(e->elements.put(e.getAttribute("id"), e.getText()));
@@ -90,5 +93,9 @@ public class Answer4Tests {
             }
         });
         return true;
+    }
+
+    private void next(){
+        wd.findElement(By.xpath("//*[@class='carousel-control-next']")).click();
     }
 }

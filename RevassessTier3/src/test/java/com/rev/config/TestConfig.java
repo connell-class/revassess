@@ -4,7 +4,6 @@ import java.sql.Connection;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.junit.TestCouldNotBeSkippedException;
 
 public class TestConfig{
     

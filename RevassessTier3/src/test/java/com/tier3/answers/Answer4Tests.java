@@ -1,7 +1,7 @@
 package com.tier3.answers;
 
 import static com.tier3.answers.PointsTests.addPoints;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,21 +9,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedStoredProcedureQuery;
-import javax.persistence.ParameterMode;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.StoredProcedureParameter;
-import javax.persistence.StoredProcedureQuery;
 
 import com.rev.config.ConnectionConfig;
-import com.rev.config.TestConfig;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.Test;
 
 /**
@@ -39,7 +30,7 @@ public class Answer4Tests {
 
     @Test
     public void test4() {
-      try(Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD){
+      try(Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD)){
 
         String sql = "{ ? = call ?(?,?)";
         CallableStatement cs = conn.prepareCall(sql);
@@ -49,10 +40,11 @@ public class Answer4Tests {
         cs.registerOutParameter(3, Types.REF_CURSOR);
         ResultSet rs = cs.executeQuery();
         while(rs.next()){
-          System.out.println(rs.getInt(1));
+          assertEquals(1,rs.getInt(1));
         }
       } catch(SQLException e){
           e.printStackTrace();
       }
+      addPoints(40);
     }
 }

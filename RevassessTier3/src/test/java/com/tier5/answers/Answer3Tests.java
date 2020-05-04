@@ -19,6 +19,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.tier5.answers.PointsTests.addPoints;
+
 /**
  * prompt: Dynamically render the flashcard information obtained from the
  * provided endpoint to the screen
@@ -71,6 +73,7 @@ public class Answer3Tests {
         elements.stream().forEach(e-> elMap.put(e.getAttribute("id"), e.getText()));
         wd.close();
         elMap.keySet().stream().forEach(e->assertTrue(jsonMap.get(e).contains(elMap.get(e))));
+        addPoints(30);
     }
 
 }

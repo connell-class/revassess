@@ -13,6 +13,8 @@ import org.jsoup.select.Elements;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.tier5.answers.PointsTests.addPoints;
+
 /**
  * prompt:
  * Create an HTML file which 
@@ -42,7 +44,7 @@ public class Answer1Tests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        addPoints(10);
     }
 
 }

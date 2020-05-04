@@ -1,11 +1,13 @@
 package com.tier4.answers;
 
-import static org.junit.Assert.assertEquals;
+import static com.tier4.answers.PointsTests.addPoints;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
 
 import com.rev.dao.UserRepository;
 
 import org.junit.Test;
-import static com.tier4.answers.PointsTests.addPoints;
 /**
  * 
  * prompt:
@@ -18,9 +20,9 @@ public class Answer3Tests {
 
     @Test
     public void testImplementation(){
-        Class[] interfaces = UserRepository.class.getInterfaces();
+        Class<?>[] interfaces = UserRepository.class.getInterfaces();
         System.out.println(interfaces[0]);
-        assertEquals(com.rev.dao.CrudRepository.class, interfaces[0]);
+        assertTrue(Arrays.asList(interfaces).contains(com.rev.dao.CrudRepository.class));
         addPoints(30);
     }
 }

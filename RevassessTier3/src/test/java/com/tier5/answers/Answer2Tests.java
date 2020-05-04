@@ -1,10 +1,10 @@
 package com.tier5.answers;
 
+import static com.tier5.answers.PointsTests.addPoints;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,5 +40,6 @@ public class Answer2Tests {
         String json = wd.findElement(By.tagName("body")).getText();
         assertTrue(json.equals(s.toString()));
         wd.close();
+        addPoints(20);
     } 
 }
