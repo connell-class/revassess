@@ -21,6 +21,6 @@ public class PointsTests {
     }
     @After
     public void printPoints(){
-        System.out.println("points: "+points);
+        System.out.println("_points: "+points);
     }
 }
