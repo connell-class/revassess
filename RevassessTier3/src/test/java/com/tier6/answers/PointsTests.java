@@ -9,7 +9,7 @@ public class PointsTests {
 
     private static int points;
 
-    public void addPoints(int x){
+    public static void addPoints(int x){
         points+=x;
     }
 
@@ -24,6 +24,6 @@ public class PointsTests {
 
     @Test
     public void testPoints(){
-        assertTrue(points>=60);
+        assertTrue(points>=200);
     }
 }
