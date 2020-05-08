@@ -12,6 +12,6 @@ import org.junit.runners.Suite.SuiteClasses;
     Answer4Tests.class,
     PointsTests.class
 })
-public class Tier1Test {
+public class Tier1Tests {
 
 }
