@@ -8,6 +8,13 @@ import com.tier1.NumberSumLength;
 
 import org.junit.Test;
 
+/**
+ * prompt:
+ * Create a method that, given an integer, can 
+ * raise each digit to the power of the overall 
+ * length and return whether the sum of the powers 
+ * is equal to the original integer.
+ */
 public class Answer4Tests {
 
     @Test

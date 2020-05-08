@@ -10,6 +10,12 @@ import com.tier1.SumOverArray;
 import org.junit.Test;
 import static com.tier1.answers.PointsTests.addPoints;
 
+/**
+ * prompt:
+ * Create a method that iterates 
+ * over an integer array and returns 
+ * their sum.
+ */
 public class Answer3Tests {
 
     @Test

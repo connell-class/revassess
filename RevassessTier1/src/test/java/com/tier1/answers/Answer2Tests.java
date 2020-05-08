@@ -12,6 +12,11 @@ import com.tier1.User;
 import org.junit.Test;
 import static com.tier1.answers.PointsTests.addPoints;
 
+/**
+ * prompt:
+ * Implement a POJO using the 
+ * provided UML class model
+ */
 public class Answer2Tests {
 
     @Test

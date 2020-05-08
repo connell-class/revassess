@@ -8,6 +8,11 @@ import com.tier1.CompareStrings;
 import org.junit.Test;
 import static com.tier1.answers.PointsTests.addPoints;
 
+/**
+ * prompt:
+ * Create a method to check 
+ * if two Strings are equal.
+ */
 public class Answer1Tests {
 
     @Test
