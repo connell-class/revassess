@@ -14,7 +14,7 @@
   - Push code to personal branch on repo provided by trainer. Notify trainer via Slack to proceed to Tier 2
 
 **Problem Set:**
-  - Create a method to check if two Strings are equal.
+  - Create a method that checks if two strings are equal and return the boolean result.
     - Value: 10 points
 
 

@@ -10,8 +10,9 @@ import static com.tier1.answers.PointsTests.addPoints;
 
 /**
  * prompt:
- * Create a method to check 
- * if two Strings are equal.
+ * Create a method that checks if 
+ * two strings are equal and return 
+ * the boolean result.
  */
 public class Answer1Tests {
 
