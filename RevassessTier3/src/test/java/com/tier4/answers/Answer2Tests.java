@@ -18,6 +18,6 @@ public class Answer2Tests {
     @Test
     public void testConnection(){
         assertNotNull(ConnectionConfig.connect());
-        addPoints(20);
+        addPoints(30);
     }
 }

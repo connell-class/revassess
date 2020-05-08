@@ -17,10 +17,6 @@ public class PointsTests {
         return points;
     }
 
-    @Before
-    public void printPoints(){
-        System.out.println("points: "+points);
-    }
 
     @Test
     public void testPoints(){

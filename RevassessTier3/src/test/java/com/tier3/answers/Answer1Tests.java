@@ -10,7 +10,8 @@ import org.junit.Test;
 
 /**
  * prompt:
- * Create an AWS RDS Instance 
+ * Add an AWS RDS Instance jdbc url and credentials 
+ * to the configuration file
  * (vendor can be either Oracle or PostgreSQL)
  */
 public class Answer1Tests {
@@ -22,6 +23,6 @@ public class Answer1Tests {
     public void test1(){
         Session sess = TestConfig.getInstance().openSession();
         assertEquals(10,sess.createNativeQuery("select * from abs(-10)", Integer.class));
-        addPoints(10);
+        addPoints(30);
     }
 }
