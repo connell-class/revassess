@@ -13,6 +13,21 @@ test(){
         fi
         cd ../
     done
+    git checkout tier3
+	git pull
+	cd RevassessTier3
+	for i in 3 4 5 
+	do
+		pass="`mvn clean test -Dtest=Tier${i}Tests`"
+		exitCode="`echo $pass | grep PointsTests | grep -c FAILURE`"
+		if (($exitCode > 0))
+		then
+			failedTier=$i
+			break
+		fi
+	done
+    mvn clean
+    cd ../
     git checkout master
 }
 test
