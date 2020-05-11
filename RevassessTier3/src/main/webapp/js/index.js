@@ -7,21 +7,16 @@
  * the url for the api is:
  *  http://ec2-3-19-123-54.us-east-2.compute.amazonaws.com:9999/flashcard
  */
+window.addEventListener('load',callFlashcardApi);
 let resp;
+//assign the returned json to the resp variable
 async function callFlashcardApi(){
-    
-    return resp;
 }
 
 /**
  * manipulate the dom with this function
  */
 function manipDom(){
-    document.getElementById('cardId').innerHTML=1;
-    document.getElementById('cardQstn').innerHTML="core java question";
-    document.getElementById('cardCat').innerHTML='core java';
-    document.getElementById('cardAns').innerHTML='dummy answer';
-    console.log("this function ran");
 }
 
 function getResp(){

@@ -16,7 +16,7 @@
   - Push to personal branch and notify trainer of completion.
 
 **Problem Set:**
-  - Setup and configure a local Tomcat web server to host your Java application on.
+  - Add the index.html inside the html folder to the web.xml welcome file list.
     - Value: 100 points
 
 

@@ -34,7 +34,6 @@ public class Answer2Tests {
     }
     @Test
     public void testAjax() {
-        (new WebDriverWait(wd, 10)).until(ExpectedConditions.jsReturnsValue("return JSON.stringify(callFlashcardApi())"));
         String s = (String) (new WebDriverWait(wd, 10)).until(ExpectedConditions.jsReturnsValue("return JSON.stringify(getResp())"));
         wd.navigate().to("http://ec2-3-19-123-54.us-east-2.compute.amazonaws.com:9999/flashcard");
         String json = wd.findElement(By.tagName("body")).getText();
