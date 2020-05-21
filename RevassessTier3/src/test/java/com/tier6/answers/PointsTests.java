@@ -17,6 +17,11 @@ public class PointsTests {
         return points;
     }
 
+    @Before
+    public void print(){
+        System.out.println("_points:"+points);
+    }
+
 
     @Test
     public void testPoints(){
