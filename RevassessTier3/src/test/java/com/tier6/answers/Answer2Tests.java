@@ -33,8 +33,10 @@ public class Answer2Tests {
         if(rev instanceof Servlet){
             serv = (HttpServlet) rev;
         } else {
-            
+            serv = new HttpServlet(){};
         }
+        serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).setAccessible(true);;
+
     }
 
     @Test
@@ -51,12 +53,7 @@ public class Answer2Tests {
         addPoints(200);
     }
 
-    private class Serv extends HttpServlet {
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            
-        }
-    }
+    
 
     
 }

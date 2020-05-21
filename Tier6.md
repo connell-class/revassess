@@ -22,5 +22,5 @@
   - Implement a single servlet that can provide flashcard data by consuming its mapped endpoint
     - Value: 200 points
 
-  - Register the servlet with tomcat
+  - Register the servlet with tomcat by utilizing the deployment descriptor
     - Value: 200 points

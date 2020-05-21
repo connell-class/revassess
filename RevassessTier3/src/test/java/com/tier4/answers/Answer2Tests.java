@@ -1,23 +1,26 @@
 package com.tier4.answers;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static com.tier4.answers.PointsTests.addPoints;
 
 import com.rev.config.ConnectionConfig;
 
 import org.junit.Test;
-import static com.tier4.answers.PointsTests.addPoints;
 
 /**
  * prompt:
- * Establish a connection to 
- * a deployed database using 
- * JDBC.
+ * implement the ConnectionConfig 
+ * class's callAbsoluteValueFunction 
+ * method with a callable statement 
+ * to call the absolute value scalar 
+ * function.
  */
 public class Answer2Tests {
 
     @Test
-    public void testConnection(){
-        assertNotNull(ConnectionConfig.connect());
-        addPoints(30);
+    public void test2(){
+        assertEquals(100,ConnectionConfig.callAbsoluteValueFunction(-100));
+        assertEquals(60, ConnectionConfig.callAbsoluteValueFunction(60));
+        addPoints(20);
     }
 }
