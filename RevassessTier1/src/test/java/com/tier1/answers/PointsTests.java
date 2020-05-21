@@ -19,7 +19,7 @@ public class PointsTests {
 
 @Before
 public void print(){
-    System.out.println("_points: "+points);
+    System.out.println("_points:"+points);
 }
     @Test
     public void MoveOn(){
