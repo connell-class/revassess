@@ -6,7 +6,8 @@ test(){
         cd ./RevassessTier$i/
         pass="`mvn clean test -Dtest=Tier${i}Tests | grep PointsTests`"
         exitCode="`echo $pass | grep -c FAILURE`"
-      	points="`echo $pass | grep -E '_points:\s\K\d+'`"
+      	tierPoints="`echo $pass | grep -oE '_points:[0-9]+' | grep -Eo '[0-9]+'`"
+        points="`expr $points + $tierPoints`"
 	if (( $exitCode > 0 ))
         then
             failedTier=$i
@@ -20,6 +21,7 @@ test
 if [ $failedTier > 0 ]
 then
     echo the failed tier was: tier $failedTier
+    echo the total number of points are $points
     exit 1
 else
     echo revassess has been passed
