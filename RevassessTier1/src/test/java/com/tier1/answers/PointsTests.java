@@ -3,6 +3,7 @@ package com.tier1.answers;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.Before;
 
 public class PointsTests {
 
@@ -16,6 +17,10 @@ public class PointsTests {
         return points;
     }
 
+@Before
+public void print(){
+    System.out.println("_points: "+points);
+}
     @Test
     public void MoveOn(){
         assertTrue(points >= 60);
