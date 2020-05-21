@@ -6,7 +6,8 @@ test(){
         cd ./RevassessTier$i/
         pass="`mvn clean test -Dtest=Tier${i}Tests | grep PointsTests`"
         exitCode="`echo $pass | grep -c FAILURE`"
-        if (( $exitCode > 0 ))
+      	points="`echo $pass | grep -E '_points:\s\K\d+'`"
+	if (( $exitCode > 0 ))
         then
             failedTier=$i
             break
