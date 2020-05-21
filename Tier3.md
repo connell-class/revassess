@@ -15,8 +15,10 @@
 
 **Problem Set:**
   - Create an AWS RDS Instance (vendor can be either Oracle or PostgreSQL)
-    - Value: 30 points
+    - Value: 10 points
 
+  - Create a callable statement to call the absolute value scalar function.
+    - Value: 20 Points
 
  - Create a table structure using the provided ERD, ensure that the ability for auto-incrementing IDs
     - Value: 30 points
