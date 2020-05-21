@@ -19,6 +19,8 @@
   - Add the index.html inside the html folder to the web.xml welcome file list.
     - Value: 100 points
 
-
   - Implement a single servlet that can provide flashcard data by consuming its mapped endpoint
+    - Value: 200 points
+
+  - Register the servlet with tomcat
     - Value: 200 points
