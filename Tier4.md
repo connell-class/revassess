@@ -16,12 +16,13 @@
 
 **Problem Set:**
   - Establish a connection to a deployed database using the provided ConnectionConfig class.
-    - Value: 30 points
-
-
+    - Value: 10 points
+    
+  - Create a sequence that produces numbers beginning at 6 and increments by 3 each time.
+    - Value: 20 Points
+    
   - Implement only the `CrudRepository` interface methods within `UserRepository` class using the provided class diagram
     - Value: 30 point
-
 
   - Implement the entire class structure indicated in the provided class diagram
     - Value: 40 points
