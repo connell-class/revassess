@@ -3,3 +3,6 @@ jdk: openjdk8
 git:
     depth: false
 script: ./ci.sh
+notifications:
+    email:
+        - robert.connell@revature.com
