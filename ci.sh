@@ -25,4 +25,5 @@ then
     exit 1
 else
     echo revassess has been passed
+    echo the total number of points received is $points
 fi
