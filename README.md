@@ -1,6 +1,8 @@
 # REVASSESS
 **This assessment will gauge your understanding of the content to this point**
 
+Make sure you add your email address to the travis.yml file.
+
 There are six tiers for this assessment that will get more difficult
 with each tier. Beginning with Tier 3, they will begin working off 
 previous work. So for example, tier 4 may use a db table constructed 
