@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.rev.config.ConnectionConfig;
+import com.rev.config.TestConfig;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.dialect.internal.StandardDialectResolver;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
@@ -18,7 +20,9 @@ import org.junit.Test;
 import static com.tier3.answers.PointsTests.addPoints;
 
 /**
- * prompt: Create a sequence that produces numbers beginning at 6 and increments
+ * prompt: 
+ * Create a sequence that produces 
+ * numbers beginning at 6 and increments
  * by 3 each time.
  * 
  */
@@ -34,7 +38,7 @@ public class Answer2Tests {
     }
 
     public long getSequenceResult(final String sequenceName) {
-        ReturningWork<Long> maxReturningWork = new ReturningWork<Long>() {
+        ReturningWork<Long> sequenceWork = new ReturningWork<Long>() {
             @Override
             public Long execute(Connection connection) throws SQLException {
                 DialectResolver dialectResolver = new StandardDialectResolver();
@@ -59,7 +63,8 @@ public class Answer2Tests {
 
             }
         };
-        return 0;
+        return TestConfig.getInstance().openSession().doReturningWork(sequenceWork);
+
     }
     
 

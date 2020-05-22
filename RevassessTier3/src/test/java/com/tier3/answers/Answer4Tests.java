@@ -18,7 +18,8 @@ import com.rev.config.ConnectionConfig;
 import org.junit.Test;
 
 /**
- * prompt: Implement a stored procedure that takes a user's id as an IN
+ * prompt: 
+ * Implement a stored procedure that takes a user's id as an IN
  * parameter and a cursor as a OUT parameter. This procedure will insert a
  * result set into the provided cursor; the result set must contain the study
  * sets belonging to the user with the provided id.

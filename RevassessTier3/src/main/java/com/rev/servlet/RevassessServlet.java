@@ -1,5 +1,7 @@
 package com.rev.servlet;
 
-public class RevassessServlet {
+import javax.servlet.http.HttpServlet;
+
+public class RevassessServlet extends HttpServlet {
     
 }
