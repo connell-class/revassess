@@ -5,4 +5,5 @@ git:
 script: ./ci.sh
 notifications:
     email:
-        - robert.connell@revature.com
+    #enter your email address below
+        - 
