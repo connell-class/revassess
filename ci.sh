@@ -4,8 +4,8 @@ test(){
         git checkout tier$i
         git pull
         cd ./RevassessTier$i/
-        pass="`mvn clean test -Dtest=Tier${i}Tests | grep PointsTests`"
-        exitCode="`echo $pass | grep -c FAILURE`"
+        pass="`mvn clean test -Dtest=Tier${i}Tests`"
+        exitCode="`echo $pass | grep PointsTests | grep -c FAILURE`"
       	tierPoints="`echo $pass | grep -oE '_points:[0-9]+' | grep -Eo '[0-9]+'`"
         points="`expr $points + $tierPoints`"
 	if (( $exitCode > 0 ))
