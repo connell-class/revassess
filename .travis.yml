@@ -5,5 +5,5 @@ git:
 script: ./ci.sh
 notifications:
     email:
-    #enter your email address below
+    josvani.l.rivera@gmail.com
         - 
