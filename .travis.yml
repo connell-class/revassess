@@ -6,4 +6,5 @@ script: ./ci.sh
 notifications:
     email:
     #enter your email address below
+    CodyMiller410347@gmail.com
         - 
