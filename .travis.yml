@@ -6,4 +6,4 @@ script: ./ci.sh
 notifications:
     email:
     #enter your email address below
-        - 
+        - jordanreedmorgan@gmail.com
