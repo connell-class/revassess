@@ -10,7 +10,7 @@
 **Minimum completion:** 60 points
 
 **Description/Setup:**
-  - User class diagram: [](https://revature-note-assets.s3.amazonaws.com/Quizzard+Class+Diagram+(Tier+1).png)
+  - User class diagram: ![Diagram](https://revature-note-assets.s3.amazonaws.com/quizzard-class-diagram-tier-1.png)
   - Push code to personal branch on repo provided by trainer. Notify trainer via Slack to proceed to Tier 2
 
 **Problem Set:**
