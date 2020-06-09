@@ -8,7 +8,7 @@ import org.junit.Before;
 public class PointsTests {
 
 
-    private static int points;
+    private static int points=30;
 
     public static void addPoints(int x){
         points += x;
