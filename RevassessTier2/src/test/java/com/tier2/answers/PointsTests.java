@@ -20,6 +20,6 @@ public class PointsTests {
     }
     @Before
     public void printPoints(){
-        System.out.println("_points: "+points);
+        System.out.println("_points:"+points);
     }
 }
