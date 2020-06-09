@@ -31,7 +31,7 @@ public class Answer3Tests {
         int [] arr2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         assertEquals(78, SumOverArray.IterateAndSum(arr2));
         int[] arr3 = { -1, -2, -3, -4, -5, -6, -7, -8, -9 };
-		assertEquals(45, SumOverArray.IterateAndSum(arr3));
+		assertEquals(-45, SumOverArray.IterateAndSum(arr3));
 		int[] arr4 = { 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80 };
 		assertEquals(1095, SumOverArray.IterateAndSum(arr4));
         addPoints(30);
