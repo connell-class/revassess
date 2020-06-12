@@ -28,7 +28,7 @@ public class Answer4Tests {
     @Before
     public void setup() {
         try {
-            answer4Contents = getFileContents("answer4");
+            answer4Contents = getFileContents("answer4").replace(';', ' ');
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public class Answer4Tests {
         Session sess = TestConfiguration.getSessionFactory().openSession();
         Transaction tx = sess.beginTransaction();
         List<UserProblem4> users = sess.createNativeQuery(answer4Contents, UserProblem4.class).list();
-        assertEquals(9, users.size());
+        assertEquals(16, users.size());
         tx.rollback();
 
         PointsTests.addPoints(40);

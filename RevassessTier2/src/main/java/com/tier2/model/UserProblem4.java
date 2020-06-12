@@ -2,6 +2,7 @@ package com.tier2.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,7 +11,9 @@ public class UserProblem4 {
 
     @Id
     private String username;
+    @Column(name = "name", insertable = false, updatable = false)
     private String set_name;
+    @Column(name = "name", insertable = false, updatable = false)
     private String category_name;
     private String question;
     private String answer;
