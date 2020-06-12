@@ -22,7 +22,10 @@ public class Answer1Tests {
     @Test
     public void test1(){
         Session sess = TestConfig.getInstance().openSession();
-        assertEquals(10,sess.createNativeQuery("select * from abs(-10)", Integer.class));
+        assertEquals(10,
+            sess.createNativeQuery("select * from abs(-10)",Integer.class)
+                .getSingleResult()
+                .intValue());
         addPoints(10);
     }
 }
