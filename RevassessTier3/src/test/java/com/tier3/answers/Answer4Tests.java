@@ -26,17 +26,22 @@ public class Answer4Tests {
 
     @Test
     public void test4() {
-      try(Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD)){
-
-        String sql = "{ ? = call ?(?,?)";
+      try (Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD)) {
+        String sql = "{ call " + ConnectionConfig.TIER_3_PROCEDURE_NAME + "(?, ?) }";
         CallableStatement cs = conn.prepareCall(sql);
-        cs.setString(2, ConnectionConfig.TIER_3_PROCEDURE_NAME);
-        cs.registerOutParameter(1, Types.REF_CURSOR);
-        cs.setInt(3, 1);
-        cs.registerOutParameter(3, Types.REF_CURSOR);
-        ResultSet rs = cs.executeQuery();
-        while(rs.next()){
-          assertEquals(1,rs.getInt(1));
+        // First parameter is set to user_id 4, since this user owns study sets
+        int userId = 4;
+        cs.setInt(1, userId);
+        // Second parameter is the cursor
+        cs.registerOutParameter(2, Types.REF_CURSOR);
+        // Manually execute callable statement
+        cs.execute();
+        // Select OUT parameter
+        ResultSet rs = (ResultSet) cs.getObject(2);
+        while (rs.next()) {
+            // Assert that user_id is the owner of every study set
+            // Expects user_id 4 from every third column (OWNER_ID)
+            assertEquals(userId, rs.getInt(3));
         }
       } catch(SQLException e){
           e.printStackTrace();
