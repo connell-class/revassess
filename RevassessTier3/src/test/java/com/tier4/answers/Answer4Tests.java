@@ -19,7 +19,7 @@ public class Answer4Tests {
 
     @Test
     public void testClasses() {
-        assertEquals(String.valueOf(Role.class .getEnumConstants()[3]), "BASIC_USER");
+        assertEquals(String.valueOf(Role.class .getEnumConstants()[2]), "BASIC_USER");
         assertEquals(ResourceNotfoundException.class.getSuperclass(), Exception.class);
         assertEquals(CrudRepository.class, FlashcardRepository.class.getInterfaces()[0]);
         assertEquals(ResourcePersistenceException.class.getSuperclass(), Exception.class);
