@@ -10,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import com.rev.config.ConnectionConfig;
 
 import org.junit.Test;
@@ -26,8 +23,6 @@ import org.junit.Test;
  */
 public class Answer4Tests {
 
-    @PersistenceContext
-    private EntityManager em;
 
     @Test
     public void test4() {
