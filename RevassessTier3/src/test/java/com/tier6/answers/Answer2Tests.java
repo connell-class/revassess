@@ -52,7 +52,7 @@ public class Answer2Tests {
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
-        serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).invoke(request, response);
+        serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).invoke(serv, request, response);
         writer.flush();
         assertTrue(stringWriter.toString().contains(
                 "{\"flashcards\":[{\"id\":1,\"question\":\"core java question\",\"answer\":\"dummy answer\",\"category\":\"core java\"},{\"id\":2,\"question\":\"java reflection question\",\"answer\":\"dummy answer\",\"category\":\"java reflection\"},{\"id\":3,\"question\":\"java collections question\",\"answer\":\"dummy answer\",\"category\":\"java collections\"}]}"));
