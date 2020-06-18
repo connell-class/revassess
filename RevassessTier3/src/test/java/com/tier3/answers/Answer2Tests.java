@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.rev.config.ConnectionConfig;
+import com.rev.config.ConnectionUtil;
 import com.rev.config.TestConfig;
 
 import org.hibernate.SessionFactory;
@@ -30,7 +30,7 @@ public class Answer2Tests {
 
     @Test
     public void testSequence() {
-        String sequence = ConnectionConfig.TIER_3_SEQUENCE_NAME;
+        String sequence = ConnectionUtil.TIER_3_SEQUENCE_NAME;
         assertEquals(0, getSequenceResult(sequence)%3);
         assertEquals(1, (getSequenceResult(sequence)+1)%3);
         assertEquals(2, (getSequenceResult(sequence)+2)%3);

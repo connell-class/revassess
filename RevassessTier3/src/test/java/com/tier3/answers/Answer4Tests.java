@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import com.rev.config.ConnectionConfig;
+import com.rev.config.ConnectionUtil;
 
 import org.junit.Test;
 
@@ -26,8 +26,8 @@ public class Answer4Tests {
 
     @Test
     public void test4() {
-      try (Connection conn = DriverManager.getConnection(ConnectionConfig.URL, ConnectionConfig.USERNAME, ConnectionConfig.PASSWORD)) {
-        String sql = "{ call " + ConnectionConfig.TIER_3_PROCEDURE_NAME + "(?, ?) }";
+      try (Connection conn = DriverManager.getConnection(ConnectionUtil.URL, ConnectionUtil.USERNAME, ConnectionUtil.PASSWORD)) {
+        String sql = "{ call " + ConnectionUtil.TIER_3_PROCEDURE_NAME + "(?, ?) }";
         CallableStatement cs = conn.prepareCall(sql);
         // First parameter is set to user_id 4, since this user owns study sets
         int userId = 4;
