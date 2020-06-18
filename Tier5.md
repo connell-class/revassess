@@ -23,7 +23,7 @@
     - Value: 20 points
 
 	
-  - Dynamically render the flashcard information obtained from the provided endpoint to the screen
+  - Dynamically render a flashcard's information obtained from the provided endpoint to the screen
     - Value: 30 points
 
 

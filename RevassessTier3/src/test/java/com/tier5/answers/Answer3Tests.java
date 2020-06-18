@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.tier5.answers.PointsTests.addPoints;
 
 /**
- * prompt: Dynamically render the flashcard information obtained from the
+ * prompt: Dynamically render a flashcard's information obtained from the
  * provided endpoint to the screen
  */
 public class Answer3Tests {
