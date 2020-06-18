@@ -2,6 +2,7 @@ package com.tier4.answers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
@@ -20,10 +21,7 @@ public class Answer1Tests {
     @Test
     public void testConnection() throws SQLException {
         assertNotNull(ConnectionConfig.connect());
-        CallableStatement cs = ConnectionConfig.connect().prepareCall("{? = call ceil(?)}");
-        cs.setDouble(2, 2.5);
-        cs.registerOutParameter(1, Types.INTEGER);
-        assertEquals(3, cs.executeQuery().getInt(1));
+        assertTrue(ConnectionConfig.connect().isValid(5));
         addPoints(10);
     }
 }
