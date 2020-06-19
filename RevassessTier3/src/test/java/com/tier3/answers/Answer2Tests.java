@@ -1,5 +1,6 @@
 package com.tier3.answers;
 
+import static com.tier3.answers.PointsTests.addPoints;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
@@ -10,14 +11,12 @@ import java.sql.SQLException;
 import com.rev.config.ConnectionUtil;
 import com.rev.config.TestConfig;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.dialect.internal.StandardDialectResolver;
-import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
+import org.hibernate.engine.jdbc.dialect.spi.DatabaseMetaDataDialectResolutionInfoAdapter;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolver;
 import org.hibernate.jdbc.ReturningWork;
 import org.junit.Test;
-import static com.tier3.answers.PointsTests.addPoints;
 
 /**
  * prompt: 
@@ -42,7 +41,7 @@ public class Answer2Tests {
             @Override
             public Long execute(Connection connection) throws SQLException {
                 DialectResolver dialectResolver = new StandardDialectResolver();
-                Dialect dialect =  dialectResolver.resolveDialect((DialectResolutionInfo) connection.getMetaData());
+                Dialect dialect = dialectResolver.resolveDialect(new DatabaseMetaDataDialectResolutionInfoAdapter(connection.getMetaData()));
                 PreparedStatement preparedStatement = null;
                 ResultSet resultSet = null;
                 try {
