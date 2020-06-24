@@ -1,5 +1,6 @@
 package com.tier5.answers;
 
+import static com.tier5.answers.PointsTests.addPoints;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -18,14 +19,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import junit.framework.AssertionFailedError;
 
-import static com.tier5.answers.PointsTests.addPoints;
-
 /**
- * prompt:
- * Create a Bootstrap carousel 
- * that will allow users to click 
- * through different flash cards 
- * one at a time
+ * prompt: Create a Bootstrap carousel that will allow users to click through
+ * different flash cards one at a time
  */
 public class Answer4Tests {
 
@@ -38,6 +34,11 @@ public class Answer4Tests {
         wd = new FirefoxDriver();
         File html = Paths.get("src/main/webapp/html/index.html").toFile();
         wd.navigate().to("file://" + html.getAbsolutePath());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     @Before
     public void answerSetup() {
@@ -64,13 +65,12 @@ public class Answer4Tests {
 
     @Test
     public void testCarousel() throws InterruptedException {
-        assertTrue(checkElements());
-        for(int i = 0; i<2; i++){
+        for(int i = 0; i<=2; i++){
             next();
-            // new WebDriverWait(wd, 3).until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//*[@class='carousel-item active']"))));
             Thread.sleep(3000);
             assertTrue(checkElements());
         }
+        wd.close();
         addPoints(40);
         
     }
