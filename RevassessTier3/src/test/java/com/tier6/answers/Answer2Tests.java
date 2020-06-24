@@ -6,10 +6,11 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.servlet.RevassessServlet;
 
 import org.junit.Before;
@@ -24,12 +26,18 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * prompt: Implement a single servlet that can provide flashcard data by
- * consuming its mapped endpoint using a get method.
+ * prompt: Implement a single servlet 
+ * that can provide flashcard data by 
+ * consuming its mapped endpoint. The 
+ * data should be in json format and 
+ * information should come from the 
+ * database using the entities created 
+ * in tier 4.
  */
 public class Answer2Tests {
 
-    HttpServlet serv;
+    private HttpServlet serv;
+    private Set<String> jsonKeys;
 
     @Before
     public void setup() throws SecurityException, NoSuchMethodException {
@@ -38,10 +46,20 @@ public class Answer2Tests {
             serv = rev;
         } else {
             serv = new HttpServlet() {
+                private static final long serialVersionUID = 1L;
             };
         }
         serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).setAccessible(true);
 
+    }
+
+    @Before
+    public void setupJson(){
+        jsonKeys = new HashSet<>();
+        jsonKeys.add("question");
+        jsonKeys.add("answer");
+        jsonKeys.add("id");
+        jsonKeys.add("category");
     }
 
     @Test
@@ -54,9 +72,12 @@ public class Answer2Tests {
         when(response.getWriter()).thenReturn(writer);
         serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).invoke(serv, request, response);
         writer.flush();
-        assertTrue(stringWriter.toString().contains(
-                "{\"flashcards\":[{\"id\":1,\"question\":\"core java question\",\"answer\":\"dummy answer\",\"category\":\"core java\"},{\"id\":2,\"question\":\"java reflection question\",\"answer\":\"dummy answer\",\"category\":\"java reflection\"},{\"id\":3,\"question\":\"java collections question\",\"answer\":\"dummy answer\",\"category\":\"java collections\"}]}"));
         addPoints(200);
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> servletJson = (Map<String, Object>) om.readValue(stringWriter.toString(), Map.class);
+        System.out.println(servletJson);
+        System.out.println(jsonKeys);
+        jsonKeys.stream().forEach(s->assertTrue(servletJson.containsKey(s)));
     }
 
     

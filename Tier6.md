@@ -19,7 +19,7 @@
   - Add the index.html inside the html folder to the web.xml welcome file list.
     - Value: 100 points
 
-  - Implement a single servlet that can provide flashcard data by consuming its mapped endpoint
+  - Implement a single servlet that can provide flashcard data by consuming its mapped endpoint. The data should be in json format and information should come from the database using the entities created in tier 4.
     - Value: 200 points
 
   - Register the servlet with tomcat by utilizing the deployment descriptor
