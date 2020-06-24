@@ -1,16 +1,12 @@
 package com.tier4.answers;
 
-import static org.junit.Assert.assertEquals;
+import static com.tier3.answers.PointsTests.addPoints;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Types;
 
 import com.rev.config.ConnectionUtil;
-import static com.tier3.answers.PointsTests.addPoints;
 
 import org.junit.Before;
 import org.junit.Test;
