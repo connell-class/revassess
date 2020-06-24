@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.servlet.RevassessServlet;
 
@@ -81,7 +82,9 @@ public class Answer2Tests {
         writer.flush();
         addPoints(200);
         ObjectMapper om = new ObjectMapper();
-        Map<String, Object> servletJson = (Map<String, Object>) om.readValue(stringWriter.toString(), Map.class);
+        String output = stringWriter.toString();
+        TypeReference<Map<String, Object>> t = new TypeReference<Map<String,Object>>() {};
+        Map<String, Object> servletJson = (Map<String, Object>) om.readValue(output, t);
         System.out.println(servletJson);
         System.out.println(jsonKeys);
         jsonKeys.stream().forEach(s->assertTrue(servletJson.containsKey(s)));
