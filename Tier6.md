@@ -11,7 +11,7 @@
 **Description/Setup:**
   - This tier requires research into a topic not covered in training at this point: Java Servlets
   - Using the work completed in the previous tiers, create a full-stack application using Java Servlets for the API - consumed using AJAX. 
-  - The work done in Tier 5 should now consume from the Java API, instead of the myjson links.
+  - The work done in Tier 5 should now consume from the Java API, instead of the supplied link.
   - App Class Diagram: [Quizzard Class Diagram (Tier 6)](https://revature-note-assets.s3.amazonaws.com/quizzard-class-diagram-tier-4.png)
   - Push to personal branch and notify trainer of completion.
 
