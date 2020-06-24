@@ -2,7 +2,6 @@ package com.rev.servlet;
 
 import javax.servlet.http.HttpServlet;
 
-//overridden methods need to have public access for testing purposes
 public class RevassessServlet extends HttpServlet {
     private static final long serialVersionUID = -2129085122858147401L;
     

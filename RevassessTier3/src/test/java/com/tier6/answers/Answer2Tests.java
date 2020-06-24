@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -38,7 +40,7 @@ public class Answer2Tests {
 
     private HttpServlet serv;
     private Set<String> jsonKeys;
-
+    private Method doGet;
     @Before
     public void setup() throws SecurityException, NoSuchMethodException {
         RevassessServlet rev = new RevassessServlet();
@@ -47,10 +49,16 @@ public class Answer2Tests {
         } else {
             serv = new HttpServlet() {
                 private static final long serialVersionUID = 1L;
+                @Override
+                protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+                        throws ServletException, IOException {
+                }
             };
         }
-        serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).setAccessible(true);
-
+        // Arrays.asList(serv.getClass().getDeclaredMethods()).stream().forEach(System.out::println);
+        doGet = serv.getClass().getSuperclass().getDeclaredMethod("doGet", HttpServletRequest.class, HttpServletResponse.class);
+        doGet.setAccessible(true);
+        // serv.getClass().
     }
 
     @Before
@@ -70,7 +78,7 @@ public class Answer2Tests {
         StringWriter stringWriter = new StringWriter();
         PrintWriter writer = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(writer);
-        serv.getClass().getMethod("doGet", HttpServletRequest.class, HttpServletResponse.class).invoke(serv, request, response);
+        doGet.invoke(serv, request, response);
         writer.flush();
         addPoints(200);
         ObjectMapper om = new ObjectMapper();
